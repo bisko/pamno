@@ -1,0 +1,21 @@
+{
+  "name": "pamno",
+  "version": "1.0.0",
+  "description": "Greyko pellet burner controller",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "Biser Perchinkov",
+  "license": "GPL-2.0-or-later",
+  "dependencies": {
+    "@serialport/parser-inter-byte-timeout": "^8.0.6",
+    "async": "^3.1.0",
+    "express": "^4.17.1",
+    "lodash": "^4.17.15",
+    "serialport": "^8.0.6"
+  },
+  "devDependencies": {
+    "mocha": "^6.2.2"
+  }
+}
