@@ -1,4 +1,11 @@
+# Ignore IDE meta folder
 .idea
+
+# Just in case :)
+config/development.json
+config/production.json
+
+.DS_Store
 
 # Logs
 logs

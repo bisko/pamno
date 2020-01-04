@@ -1,0 +1,39 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.entryRow {
+  display:flex;
+  flex-direction: row;
+  width: 100%;
+  flex-wrap: nowrap;
+  align-content: flex-start;
+  justify-content: flex-start;
+}
+
+.entryRow:nth-child(even) {
+  background-color: white;
+}
+
+.entryRow:nth-child(odd) {
+  background-color: lightgray;
+}
+.entryTitle, .entryValue {
+  flex: 1 0 auto;
+  padding: 8px;
+}
+
+.entryTitle {
+}
+
+.entryValue {
+  text-align: right;
+}

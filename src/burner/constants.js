@@ -1,10 +1,9 @@
 module.exports = {
-	CMDS:
-		{
-			GET_INFO: 0x01,
-			SET_BURNER_MODE: 0x03, // TODO
-			GET_BURNER_SETTINGS: 0x04, // TODO
-		},
+	CMDS: {
+		GET_INFO: 0x01,
+		SET_BURNER_MODE: 0x03, // TODO
+		GET_BURNER_SETTINGS: 0x04, // TODO
+	},
 	BURNER_MODES: {
 		STANDBY: 0x0,
 		AUTO: 0x1,

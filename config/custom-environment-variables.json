@@ -1,0 +1,13 @@
+{
+	"INFLUX": {
+		"host": "INFLUX_HOST",
+		"port": "INFLUX_PORT",
+		"username": "INFLUX_USER",
+		"password": "INFLUX_PASS",
+		"db": "INFLUX_DB"
+	},
+	"HTTP_AUTH": {
+		"username": "HTTP_USER",
+		"password": "HTTP_PASS"
+	}
+}

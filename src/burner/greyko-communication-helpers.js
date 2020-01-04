@@ -1,5 +1,6 @@
 const { sum } = require( 'lodash' );
 const { COMMAND_HEADER } = require( "./constants" );
+const debug = require( 'debug' )( 'pamno:serial-comm-helpers' );
 
 const calculateCommandChecksum = ( command ) => ( sum( command ) & 0xFF ) ^ 0xFF;
 
@@ -9,9 +10,9 @@ const generateCommand = ( command, data = [] ) => {
 		command,
 		...data, // payload
 	] );
-	console.log( cmd );
+
 	cmd = new Buffer.from( [...cmd, calculateCommandChecksum( cmd )] ); // Calculate checksum and add it to the end of the data
-	console.log( cmd );
+
 	/**
 	 * Increase the value of each byte with it's position in the command, starting after the command length position
 	 * I.e. `5A 5A 04 03 01 00 F7` becomes  `5A 5A 04 03 02 02 FA`
@@ -25,7 +26,7 @@ const generateCommand = ( command, data = [] ) => {
 
 const getResponseData = ( response ) => {
 	if ( response.length !== COMMAND_HEADER.length + 1 + response[ COMMAND_HEADER.length ] ) {
-		console.log( response );
+		debug( 'Got wrong response length: Expected: %d, Actual: %d', ( COMMAND_HEADER.length + 1 + response[ COMMAND_HEADER.length ] ), response.length )
 		throw  'Wrong response length. Actual: ' + response.length + ' / Expected: ' + ( COMMAND_HEADER.length + 1 + response[ COMMAND_HEADER.length ] )
 	}
 
@@ -41,13 +42,13 @@ const getResponseData = ( response ) => {
 	const checksum = calculateCommandChecksum( dataBuff.slice( 0, - 1 ) );
 
 	if ( dataBuff[ dataBuff.length - 1 ] !== checksum ) {
-		console.log( response );
-		console.log( dataBuff );
-		console.log( dataBuff.slice( 0, - 1 ) );
-		console.log( 'Sum', sum( dataBuff.slice( 0, - 1 ) ), sum( dataBuff.slice( 0, - 1 ) ) & 0xFF );
-		console.log( 'Expected checksum', dataBuff[ dataBuff.length - 1 ] );
-		console.log( 'Expected sum', dataBuff[ dataBuff.length - 1 ] ^ 0xFF );
-		console.log( 'Actual checksum', checksum );
+		debug( 'Response checksum difference: ' );
+		debug( 'Response: %O', response );
+		debug( 'Data buffer: %O', dataBuff );
+		debug( 'Sum: %d, LSB: %d', sum( dataBuff.slice( 0, - 1 ) ), sum( dataBuff.slice( 0, - 1 ) ) & 0xFF );
+		debug( 'Expected checksum: %d', dataBuff[ dataBuff.length - 1 ] );
+		debug( 'Expected sum: %d', dataBuff[ dataBuff.length - 1 ] ^ 0xFF );
+		debug( 'Actual checksum: %d', checksum );
 		throw 'Invalid response checksum';
 	}
 

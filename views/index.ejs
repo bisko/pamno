@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+</head>
+<body>
+<h1><%= title %></h1>
+<div class="entryRow">
+    <div class="entryTitle">Час/дата</div>
+    <div class="entryValue">
+        <%= status.year.toString() %>-<%= status.month.toString().padStart( 2, '0' ) %>-<%= status.day.toString().padStart( 2, '0' ) %>
+        <%= status.hour.toString().padStart( 2, '0' ) %>:<%= status.minute.toString().padStart( 2, '0' ) %>:<%= status.seconds.toString().padStart( 2, '0' ) %>
+    </div>
+</div>
+<div class="entryRow">
+    <div class="entryTitle">Режим</div>
+    <div class="entryValue"><%= status.mode %> <%= modeIcon %> ( Смени на:
+        <a onclick="return confirm('Сигурни ли сте, че искате да смените режима на Standby?');" href="/changeMode/<%= burnerModes.STANDBY %>">Standby</a>,
+        <a onclick="return confirm('Сигурни ли сте, че искате да смените режима на Timer?');"  href="/changeMode/<%= burnerModes.TIMER %>">Timer</a>,
+        <a onclick="return confirm('Сигурни ли сте, че искате да смените режима на Auto?');" href="/changeMode/<%= burnerModes.AUTO %>">Auto</a>
+        )
+    </div>
+</div>
+<div class="entryRow">
+    <div class="entryTitle">Приоритет</div>
+    <div class="entryValue"><%= status.priority %></div>
+</div>
+<div class="entryRow">
+    <div class="entryTitle">Текущ статус</div>
+    <div class="entryValue"><%= status.currentStatus %></div>
+</div>
+<div class="entryRow">
+    <div class="entryTitle">Текущ режим мощност</div>
+    <div class="entryValue"><%= status.powerMode %></div>
+</div>
+<div class="entryRow">
+    <div class="entryTitle">Вентилатор</div>
+    <div class="entryValue"><%= status.fan %></div>
+</div>
+<div class="entryRow">
+    <div class="entryTitle">Температура</div>
+    <div class="entryValue"><%= status.tBoiler %>°C / <%= status.tSet %>°C</div>
+</div>
+<div class="entryRow">
+    <div class="entryTitle">Пламък</div>
+    <div class="entryValue"><%= status.flame %></div>
+</div>
+<div class="entryRow">
+    <div class="entryTitle">Шнек време</div>
+    <div class="entryValue"><%= status.feederTime %></div>
+</div>
+</body>
+</html>

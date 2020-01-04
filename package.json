@@ -1,21 +1,30 @@
 {
-  "name": "pamno",
-  "version": "1.0.0",
-  "description": "Greyko pellet burner controller",
-  "main": "index.js",
-  "scripts": {
-    "test": "mocha"
-  },
-  "author": "Biser Perchinkov",
-  "license": "GPL-2.0-or-later",
-  "dependencies": {
-    "@serialport/parser-inter-byte-timeout": "^8.0.6",
-    "async": "^3.1.0",
-    "express": "^4.17.1",
-    "lodash": "^4.17.15",
-    "serialport": "^8.0.6"
-  },
-  "devDependencies": {
-    "mocha": "^6.2.2"
-  }
+	"name": "pamno",
+	"version": "0.0.1",
+	"description": "Greyko pellet burner controller",
+	"main": "index.js",
+	"author": "Biser Perchinkov",
+	"license": "GPL-2.0-or-later",
+	"scripts": {
+		"start": "node ./bin/www",
+		"test": "mocha"
+	},
+	"dependencies": {
+		"@serialport/parser-inter-byte-timeout": "^8.0.6",
+		"async": "^3.1.0",
+		"config": "^3.2.4",
+		"cookie-parser": "~1.4.4",
+		"debug": "~4.1.1",
+		"ejs": "~3.0.1",
+		"express": "~4.17.1",
+		"express-async-handler": "^1.1.4",
+		"http-errors": "~1.7.3",
+		"influx": "^5.5.1",
+		"lodash": "^4.17.15",
+		"morgan": "~1.9.1",
+		"serialport": "^8.0.6"
+	},
+	"devDependencies": {
+		"mocha": "^6.2.2"
+	}
 }

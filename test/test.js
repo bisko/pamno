@@ -1,6 +1,6 @@
 const assert = require( 'assert' );
 let mocha = require( 'mocha' );
-const { getResponseData } = require( "../greyko-communication-helpers" );
+const { getResponseData } = require( "../src/burner/greyko-communication-helpers" );
 let describe = mocha.describe;
 
 describe( 'Response validation', () => {

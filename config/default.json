@@ -1,0 +1,13 @@
+{
+	"INFLUX": {
+		"host": "",
+		"port": 8086,
+		"username": "",
+		"password": "",
+		"db": ""
+	},
+	"HTTP_AUTH": {
+		"username": "",
+		"password": ""
+	}
+}
