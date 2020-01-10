@@ -1,6 +1,8 @@
 const app = require( './src/api/api-server' );
 const debug = require( 'debug' )( 'greyko:server' );
 const http = require( 'http' );
+const config = require( 'config' );
+
 const commChannel = require( './src/burner/greyko-communication' );
 
 /**
@@ -84,9 +86,9 @@ function onListening() {
 server.listen( port );
 server.on( 'error', onError );
 server.on( 'listening', onListening );
-console.log('Starting connection');
+console.log( 'Starting connection' );
 //const { CMDS, BURNER_MODES, PRIORITY_MODES } = require( './src/burner/constants' );
-commChannel.setupPort('COM10').then( () => {
+commChannel.setupPort( config.get( 'SERIAL_PORT.port' ) ).then( () => {
 	console.log( 'Connected to port' );
 	//changeMode( commChannel, BURNER_MODES.TIMER, PRIORITY_MODES.CH_PRIORITY );
 } ).catch( console.error );

@@ -1,13 +1,19 @@
 {
-	"INFLUX": {
-		"host": "",
-		"port": 8086,
-		"username": "",
-		"password": "",
-		"db": ""
-	},
+	"INFLUX": [
+		{
+			"host": "",
+			"port": 8286,
+			"username": "",
+			"password": "",
+			"db": ""
+		}
+	],
 	"HTTP_AUTH": {
 		"username": "",
 		"password": ""
+	},
+	"SERIAL_PORT": {
+		"port": "",
+		"baud": 9600
 	}
 }
