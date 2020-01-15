@@ -16,11 +16,15 @@
 </div>
 <div class="entryRow">
     <div class="entryTitle">Режим</div>
-    <div class="entryValue"><%= status.mode %> <%= modeIcon %> ( Смени на:
+    <div class="entryValue"><%= status.mode %> <%= modeIcon %>
+    </div>
+</div>
+<div class="entryRow">
+    <div class="entryValue">
+        Смени на:
         <a onclick="return confirm('Сигурни ли сте, че искате да смените режима на Standby?');" href="/changeMode/<%= burnerModes.STANDBY %>">Standby</a>,
         <a onclick="return confirm('Сигурни ли сте, че искате да смените режима на Timer?');"  href="/changeMode/<%= burnerModes.TIMER %>">Timer</a>,
         <a onclick="return confirm('Сигурни ли сте, че искате да смените режима на Auto?');" href="/changeMode/<%= burnerModes.AUTO %>">Auto</a>
-        )
     </div>
 </div>
 <div class="entryRow">
