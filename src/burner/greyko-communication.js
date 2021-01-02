@@ -80,8 +80,8 @@ class GreykoCommunication {
 		const currentTask = this.currentTask;
 		this.currentTask = null;
 
-		// Add a 1 second delay before running next task as burner controller can't cope
-		setTimeout( currentTask.finishTask, 1000 );
+		// Add a 0.5 second delay before running next task as burner controller can't cope
+		setTimeout( currentTask.finishTask, 500 );
 
 		try {
 			const responseData = getResponseData( response );
@@ -98,7 +98,13 @@ class GreykoCommunication {
 	updateStatus = async () => {
 		try {
 			this.currentStatus = await this.getStatus();
-			this.pushStatusToInflux( this.currentStatus );
+			await this.resetFeedTime();
+
+			// Save the information in Influx in a separate thread, to avoid the data fetching.
+			setTimeout( () => {
+				this.pushStatusToInflux( this.currentStatus );
+			}, 0 );
+
 		} catch ( err ) {
 			this.currentStatus = err;
 		}
@@ -195,6 +201,16 @@ class GreykoCommunication {
 			return null;
 		}
 
+	};
+
+	resetFeedTime = async () => {
+		debug( 'Resetting feed status' );
+		try {
+			return await this.sendCommand( CMDS.RESET_PELLET_COUNTER, [] )
+		} catch ( err ) {
+			debug( 'Unable to reet pellet feed status: %o', err );
+			return null;
+		}
 	};
 }
 
