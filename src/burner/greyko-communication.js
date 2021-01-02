@@ -14,14 +14,30 @@ class GreykoCommunication {
 		this.currentStatus = null;
 		this.currentStatusInterval = null;
 
+		this.isHangedCheck = null;
+
 		this.commandQueue = new queue( ( task, next ) => {
 			debug( 'Running task: %O', task );
 			this.currentTask = { ...task, finishTask: next };
+
+			this.checkHanged( next );
+
 			this.serialPort.write( new Buffer.from( task.command ) );
 		}, 1 );
 
 		this.influxStorage = new InfluxStorage();
 	}
+
+	checkHanged = (next) => {
+		this.isHangedCheck = setTimeout(() => {
+			debug( 'Detected a hang. Resetting and moving on.' );
+			/**
+			 * No response, reset the current task and move on in the queue.
+			 */
+			this.currentTask = null;
+			next();
+		},2000);
+	};
 
 	setupPort = async ( port = '' ) => {
 		return new Promise( ( resolve, reject ) => {
@@ -49,6 +65,7 @@ class GreykoCommunication {
 
 			this.serialPort.on( 'error', ( err ) => {
 				debug( 'Serial port error occurred %o', err );
+
 			} );
 
 			this.serialPort.on( 'close', ( err ) => {
@@ -76,6 +93,9 @@ class GreykoCommunication {
 		if ( !this.currentTask ) {
 			throw 'No current task set while receiving response' + response.toString();
 		}
+
+		// Reset the isHangedCheck timeout
+		clearTimeout( this.isHangedCheck );
 
 		const currentTask = this.currentTask;
 		this.currentTask = null;
