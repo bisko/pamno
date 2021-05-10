@@ -20,7 +20,7 @@
 		"express-async-handler": "^1.1.4",
 		"http-errors": "~1.7.3",
 		"influx": "^5.5.1",
-		"lodash": "^4.17.19",
+		"lodash": "^4.17.21",
 		"morgan": "~1.9.1",
 		"serialport": "^8.0.6"
 	},
