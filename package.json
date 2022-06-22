@@ -11,7 +11,7 @@
 	},
 	"dependencies": {
 		"@serialport/parser-inter-byte-timeout": "^8.0.6",
-		"async": "^3.1.0",
+		"async": "^3.2.2",
 		"config": "^3.2.4",
 		"cookie-parser": "~1.4.4",
 		"debug": "~4.1.1",
